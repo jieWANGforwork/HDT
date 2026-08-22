@@ -1,0 +1,43 @@
+project:
+  name: HDT
+
+runtime:
+  device: auto
+  seed: 777
+
+data:
+  dataset: lfmalbum
+  objective: novelty_diversity
+  root: data/processed/lfmalbum
+  item_metadata: train_test/item_data.csv
+  expected_train: train_test/train_session_df_replay_buffer_nov3_user.df
+  expected_test: train_test/test_session_df_replay_buffer_nov_users_h3.df
+
+model:
+  mode: multi_objective
+  item_num: null
+  state_size: 20
+  hidden_size: 64
+  embed_dim: 64
+  n_layer: 1
+  n_head: 1
+  activation_function: relu
+  dropout: 0.1
+  action_embedding_source: states
+
+training:
+  batch_size: 100
+  epochs: 40
+  max_steps: 0
+  lr: 0.001
+  discount: 0.5
+  checkpoint_dir: checkpoints/lfmalbum
+  loss_weights:
+    supervised: 1.0
+    user: 0.1
+    session: 0.5
+    diversity: 0.0
+    reward: 0.2
+
+evaluation:
+  top_k: 10

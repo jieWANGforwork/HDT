@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hdt"
+version = "0.1.0"
+description = "Hierarchical Transformer for Multi-Objective Recommendation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "pyyaml>=6.0",
+  "torch>=2.0",
+  "tqdm>=4.60",
+  "transformers>=4.30",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+

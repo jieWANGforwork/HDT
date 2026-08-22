@@ -1,0 +1,44 @@
+project:
+  name: HDT
+  paper: "HDT: Hierarchical Transformer for Multi-Objective Recommendation"
+
+runtime:
+  device: auto
+  seed: 777
+
+data:
+  dataset: reddit
+  objective: novelty_diversity
+  root: data/processed/reddit
+  item_metadata: item_data.csv
+  expected_train: train_test/train_session_df_replay_buffer_nov2_user.df
+  expected_test: train_test/test_session_df_replay_buffer_nov2_users_h.df
+
+model:
+  mode: multi_objective
+  item_num: null
+  state_size: 20
+  hidden_size: 100
+  embed_dim: 100
+  n_layer: 1
+  n_head: 1
+  activation_function: relu
+  dropout: 0.1
+  action_embedding_source: actions
+
+training:
+  batch_size: 200
+  epochs: 70
+  max_steps: 0
+  lr: 0.001
+  discount: 0.5
+  checkpoint_dir: checkpoints/reddit
+  loss_weights:
+    supervised: 1.0
+    user: 1.0
+    session: 0.5
+    diversity: 0.0
+    reward: 0.2
+
+evaluation:
+  top_k: 10

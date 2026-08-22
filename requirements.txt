@@ -1,0 +1,8 @@
+numpy>=1.23
+pandas>=1.5
+pyyaml>=6.0
+torch>=2.0
+tqdm>=4.60
+transformers>=4.30
+pytest>=7.0
+
