@@ -1,11 +1,11 @@
 # Data Preparation
 
 HDT uses session-level replay-buffer files generated from sequential
-recommendation logs. This server-side release includes the real data available
-in `HDT/data/...` and `HDT_lfm/data/...`, including large `.df` replay buffers
-and replay-buffer CSV exports. Old project checkpoints are not copied.
+recommendation logs. The public repository includes lightweight metadata but
+does not include the large `.df` replay buffers, similarity matrices, raw
+exports, or checkpoints required for paper-scale experiments.
 
-Included data assets are summarized in `data/processed/MANIFEST.md`.
+The expected local assets are summarized in `data/processed/MANIFEST.md`.
 
 ## Required Columns
 
@@ -13,7 +13,7 @@ The training loaders expect pandas pickle files with these columns:
 
 - Common: `userID`, `sessionID`, `itemsID`, `actionsID`
 - Novelty objective: `user_nov_rtgs`, `nov_reward`, `nov_intra`
-- Diversity objective: `user_div_rtgs`, `div_reward`, `div_rtgs`
+- Diversity objective: `user_div_rtgs`, `div_scores`, `div_rtgs`
 - Multi-objective HDT: all novelty and diversity columns above
 
 `itemsID` and `actionsID` are fixed-length item-id sequences. The padding item
@@ -30,7 +30,11 @@ The HDT release code and data assumptions are extracted only from `HDT/` and
 `HDT_lfm/`. Other project directories in the same workspace are not used as
 references because their code and data schemas are separate from HDT.
 
-## Included Server Data
+## Audited Research Data
+
+The authors' original research workspace used the following assets. This list
+documents the provenance check; it does not indicate that the assets are tracked
+in the public repository.
 
 - Reddit: real replay buffers, item metadata, split CSV files, popularity lists,
   less-popular item lists, TF-IDF goal features, and `embs_sims.npy`.
@@ -39,9 +43,9 @@ references because their code and data schemas are separate from HDT.
 - LFM and LFM-album: real replay buffers, SAS/reward/diversity variants,
   metadata, popularity lists, and less-popular item lists.
 
-These files are enough to run real-data training/evaluation from the prepared
-configs. Large files are ignored by git and should be distributed separately
-when preparing the public release.
+When placed in the expected paths, these files support real-data training and
+evaluation with the prepared configs. Large files are ignored by Git and must be
+distributed separately with the applicable dataset terms.
 
 ## Excluded Files
 

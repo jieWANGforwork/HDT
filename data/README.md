@@ -1,10 +1,11 @@
 # Data
 
-This server-side release includes real HDT data under `data/processed/`.
-The data was copied from `HDT/data/...` and `HDT_lfm/data/...`; old checkpoints
-were not copied.
+The public repository tracks lightweight item metadata and directory
+placeholders under `data/processed/`. Large replay buffers, similarity matrices,
+raw exports, and checkpoints are excluded from Git and must be obtained or
+prepared separately.
 
-See `data/processed/MANIFEST.md` for the key included files and config mapping.
+See `data/processed/MANIFEST.md` for the expected files and config mapping.
 
 Expected processed layouts:
 
@@ -48,6 +49,8 @@ data/processed/lfmalbum/
     test_session_df_replay_buffer_nov_users_h3.df
 ```
 
-The old workspace sources used for cross-checking were `HDT/data/...` and
-`HDT_lfm/data/...`. For public GitHub release, keep large data out of git and
-publish it separately as links or external artifacts.
+The layouts were cross-checked against the authors' original `HDT/data/...` and
+`HDT_lfm/data/...` research directories. Their presence in that audited local
+workspace does not mean the files are included in a public clone. Keep large
+data out of Git and distribute it separately with provenance, terms, and
+checksums.
